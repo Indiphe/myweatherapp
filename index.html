@@ -173,12 +173,24 @@
   </body>
   <script>
     function weather(response) {
-      console.log(response);
       let temperatureElement = document.querySelector("#temp-now");
       let temperature = Math.round(response.data.temperature.current);
       temperatureElement.innerHTML = temperature;
+
       let cityElement = document.querySelector("#current-city");
       cityElement.innerHTML = response.data.city;
+
+      let description = document.querySelector("#description");
+      description.innerHTML = response.data.condition.description;
+
+      let humidity = document.querySelector("#humidity");
+      humidity.innerHTML = response.data.temperature.humidity + "%";
+
+      let windspeed = document.querySelector("#w-speed");
+      windspeed.innerHTML = response.data.wind.speed + "km/h";
+
+      let icon = document.querySelector("#icon");
+      icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
     }
     function search(event) {
       event.preventDefault();
