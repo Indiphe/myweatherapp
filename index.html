@@ -249,6 +249,8 @@
 
       let icon = document.querySelector("#icon");
       icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
+       getforecastdata(response.data.city.forecast)
+
     }
     function search(event) {
       event.preventDefault();
@@ -262,7 +264,14 @@
 
       axios.get(URL).then(weather);
     }
+function getforecastdata(city){
+      let APIKey = "51t8c7a54baf34490b70f5dc7aco6f3d";
 
+      let URL = `https://api.shecodes.io/weather/v1/forecasst?query=${city}&key=${APIKey}&units=metric`;
+
+      axios.get(URL).then(displayForecast);
+      displayForecast()
+}
     function formatDate(date) {
       let minutes = date.getMinutes();
       let hours = date.getHours();
