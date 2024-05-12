@@ -13,16 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <style>
       body {
-        background: #f9f7fe;
+        background:rgb(12, 62, 79); ;
         font-family: "Roboto", sans-serif;
       }
 
       a {
-        color: #6c5df1;
+        color: #cecce2;
       }
 
       .weather-app {
-        background: rgb(0, 191, 255);
+        background: rgb(34, 85, 102);
         max-width: 600px;
         margin: 60px auto;
         padding: 30px;
@@ -34,21 +34,22 @@
         border-bottom: 1px solid #f9f7fe;
         padding-bottom: 30px;
       }
-      .search-input {
-        background-color: rgba(65, 50, 100, 0.08);
+
+      .search-form-input {
+        background-color: rgba(242, 241, 245, 0.905);
         border: none;
-        color: rgba(38, 66, 33, 0.4);
+        color: rgba(33, 57, 66, 0.4);
         font-size: 16px;
         padding: 20px;
         width: 75%;
         border-radius: 6px;
       }
 
-      .search-button {
+      .search-form-button {
         margin-left: 5px;
         font-size: 16px;
         background-color: fuchsia;
-        color: black;
+        color:black(184, 44, 44);
         border: none;
         padding: 20px;
         line-height: 1;
@@ -83,34 +84,31 @@
       .current-details strong {
         color: #f65282;
       }
+      .weather-app-temperature-container {
+       display: flex;
+       }
 
       .current-temperature-icon {
-        .current-temperature-icon {
-        position: relative;
-        top: -8px;
-        font-size: 40px;
-        margin-right: 10px;
         width: 88px;
-        height: 88px;
+  height: 88px;
       }
 
-      }
-
-      .current-temperature-value {
-        font-size: 75px;
-        font-weight: bold;
-        line-height: 88px;
-      }
-
+     
       .current-temperature-unit {
-        font-size: 28px;
-        position: relative;
-        top: -38px;
-      }
+      
+  margin-top: 6px;
+  font-size: 28px;
+}
+      .weather-app-temperature {
+  font-size: 88px;
+  line-height: 88px;
+  font-weight: bold;
+}
 
       footer {
         border-top: 1px solid #f9f7fe;
         text-align: center;
+          padding: 30px 0 0 0;
         padding-top: 15px;
 
         color: whitesmoke;
@@ -124,41 +122,10 @@
       .host {
         color: #f65282;
       }
-      .weatheforcast {
-        margin-top: 20px;
-        text-align: left;
-      }
-      .weatherdate {
-        font-size: 16px;
-        opacity: 0.5;
-      }
-      .weatherftemp-min {
-        opacity: 0.5;
-      }
-      .forcast-temp {
-        font-size: 13px;
-      }
-      .weather-app-icon {
-  width: 88px;
-  height: 88px;
-}
 
-.weather-app-temperature {
-  font-size: 88px;
-  line-height: 88px;
-  font-weight: bold;
-}
-
-.weather-app-unit {
-  margin-top: 6px;
-  font-size: 28px;
-}
-     .weather-app-temperature-container{
-     display:contents;
-     }
      .weather-forecast-date {
   text-align: center;
-  color: rgba(39, 33, 66, 0.4);
+  color: snow;
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 10px;
@@ -179,156 +146,171 @@
 .weather-forecast-temperature {
   padding: 0 10px;
 }
+
     </style>
   </head>
   <body>
     <div class="weather-app">
       <header>
-        <form id="search-form">
+        <form class="search-form" id="search-form">
           <input
             type="search"
             placeholder="Enter a city.."
             required
-            class="search-input"
-            id="search-input"
+            id="search-form-input"
+            class="search-form-input"
           />
-          <input type="submit" value="Search" class="search-button" />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
       <main>
         <div class="current-weather">
           <div>
-            <h1 class="current-city" id="current-city">Paris</h1>
+            <h1 class="current-city" id="city"></h1>
             <p class="current-details">
-               <span class="date" id="current-date"></span>,
-              <span id="description">moderate rain</span> <br />
-              Humidity: <strong id="humidity">87%</strong> , Wind:
-              <strong id="w-speed">7.2km/h</strong>
+              <span id="time"></span>,
+              <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
             </p>
           </div>
-          <div class="current-temperature">
-           <div id="icon"></div>
-            <span id="temp-now" class="current-temperature-value">24</span>
-            <span class="current-temperature-unit">°C</span>
-          </div>
-       <div class="weather-app-temperature-container">
-            <div id="icon"></div>
-            <div class="weather-app-temperature" id="temperature"></div>
-            <div class="weather-app-unit">°C</div>
+          <div class="weather-app-temperature-container">
+            <div class="current-temperature-icon" id="icon"></div>
+        <div class="weather-app-temperature" id="temperature"></div>
+            <div class="current-temperature-unit">°C</div>
           </div>
         </div>
         <div class="weather-forecast" id="forecast"></div>
       </main>
-<footer>
+ 
+      <footer>
         <p>
           This project was coded by
-          <a href="https://www.linkedin.com/in/indiphe-yonwaba-3b5966289/" target="_blank" class="name">Indiphe Yonwaba Nondlazi</a>
-          and is <a href="https://github.com/Indiphe/myweatherapp" target="_blank" class="location"> on GitHub</a> and hosted on
-          <a href="https://app.netlify.com/teams/indiphe/overview" target="_blank" class="host"> Netlify</a>
+          <a
+            href="https://www.linkedin.com/in/indiphe-yonwaba-3b5966289/"
+            target="_blank"
+            class="name"
+            >Indiphe Yonwaba Nondlazi</a
+          >
+          and is
+          <a
+            href="https://github.com/Indiphe/myweatherapp"
+            target="_blank"
+            class="location"
+          >
+            on GitHub</a
+          >
+          and hosted on
+
+          <a
+            href="https://app.netlify.com/teams/indiphe/overview"
+            target="_blank"
+            class="host"
+            >Netlify</a
+          >
         </p>
       </footer>
-    </div>
-  </body>
+
   <script>
-    function weather(response) {
-      let temperatureElement = document.querySelector("#temp-now");
-      let temperature = Math.round(response.data.temperature.current);
-      temperatureElement.innerHTML = temperature;
+    function refreshWeather(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = response.data.temperature.current;
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windSpeedElement = document.querySelector("#wind-speed");
+  let timeElement = document.querySelector("#time");
+  let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
 
-      let cityElement = document.querySelector("#current-city");
-      cityElement.innerHTML = response.data.city;
+  cityElement.innerHTML = response.data.city;
+  timeElement.innerHTML = formatDate(date);
+  descriptionElement.innerHTML = response.data.condition.description;
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
+  temperatureElement.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 
-      let description = document.querySelector("#description");
-      description.innerHTML = response.data.condition.description;
-
-      let humidity = document.querySelector("#humidity");
-      humidity.innerHTML = response.data.temperature.humidity + "%";
-
-      let windspeed = document.querySelector("#w-speed");
-      windspeed.innerHTML = response.data.wind.speed + "km/h";
-
-      let icon = document.querySelector("#icon");
-      icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
-       getforecastdata(response.data.city.forecast)
-
-    }
-    function search(event) {
-      event.preventDefault();
-      let searchInputElement = document.querySelector("#search-input");
-      let cityElement = document.querySelector("#current-city");
-      let city = searchInputElement.value;
-
-      let APIKey = "51t8c7a54baf34490b70f5dc7aco6f3d";
-
-      let URL = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${APIKey}&units=metric`;
-
-      axios.get(URL).then(weather);
-    }
-function getforecastdata(city){
-      let APIKey = "51t8c7a54baf34490b70f5dc7aco6f3d";
-
-      let URL = `https://api.shecodes.io/weather/v1/forecasst?query=${city}&key=${APIKey}&units=metric`;
-
-      axios.get(URL).then(displayForecast);
-      displayForecast()
+  getForecast(response.data.city);
 }
-    function formatDate(date) {
-      let minutes = date.getMinutes();
-      let hours = date.getHours();
-      let day = date.getDay();
 
-      if (minutes < 10) {
-        minutes = `0${minutes}`;
-      }
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
 
-      if (hours < 10) {
-        hours = `0${hours}`;
-      }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-      let days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
+  return `${day} ${hours}:${minutes}`;
+}
 
-      let formattedDay = days[day];
-      return `${formattedDay} ${hours}:${minutes}`;
-    }
-function displayForecast() {
-  let days = ["Mon","Tue", "Wed", "Thu", "Fri", "Sat"];
+function searchCity(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(refreshWeather);
+}
+function handleSearchSubmit(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-form-input");
+
+  searchCity(searchInput.value);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function getForecast(city) {
+  let apiKey = "b2a5adcct04b33178913oc335f405433";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
   let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+ response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
       <div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon">🌤️</div>
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
         <div class="weather-forecast-temperatures">
           <div class="weather-forecast-temperature">
-            <strong>15º</strong>
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
           </div>
-          <div class="weather-forecast-temperature">9º</div>
+          <div class="weather-forecast-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
         </div>
       </div>
     `;
+    }
   });
 
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
-displayForecast()
-    let searchForm = document.querySelector("#search-form");
-    searchForm.addEventListener("submit", search);
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-    let currentDateELement = document.querySelector("#current-date");
-    let currentDate = new Date();
-
-    currentDateELement.innerHTML = formatDate(currentDate);
   </script>
+    </body>
 </html>
