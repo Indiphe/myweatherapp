@@ -4,7 +4,126 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to Khanya Store</title>
-    <link rel="stylesheet" href="index.css" />
+   <style>
+     #menu-button {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: whitesmoke;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 1000;
+}
+
+#menu li {
+  margin-right: 20px;
+}
+
+#menu a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  padding: 20px;
+  display: block;
+}
+
+#menu a:hover {
+  color: #ccc;
+  background-color: #0ccddb11;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+ul#menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul#menu li {
+  margin: 5px 0;
+}
+
+button.nav-button {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+button.nav-button:hover {
+  background-color: #0056b3;
+}
+
+#info-display {
+  border: 5px solid #0b31a2;
+  border-radius: 5px;
+  background-color: #423838;
+  padding: 40px;
+}
+#Indepth-detail {
+  background-color: #423838;
+  text-justify: auto;
+  text-align: center;
+  text-decoration: #0056b3;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+.menu {
+  position: relative;
+  display: inline-block;
+}
+.menu2-button {
+  background-color: blueviolet;
+  color: white;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.menu-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 160px;
+}
+.menu-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+.menu-content a:hover {
+  background-color: #ddd;
+}
+.menu:hover .menu-content {
+  display: block;
+}
+   </style>
    
   </head>
   <body>
