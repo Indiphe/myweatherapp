@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to Khanya Store</title>
     <link rel="stylesheet" href="index.css" />
-    <script src="script.js" defer></script>
+   
   </head>
   <body>
     <nav>
@@ -59,4 +59,23 @@
     </nav>
     <img src="StockCake-Joyful School Award_1726328338.jpg" alt="Uniform 2" />
   </body>
+   <script>const loginForm = document.getElementById("loginForm");
+const registerForm = document.getElementById("registerForm");
+const indicator = document.getElementById("indicator");
+
+function showLogin() {
+  loginForm.classList.add("active");
+  registerForm.classList.remove("active");
+  indicator.style.transform = "translateX(0)";
+}
+
+function showRegister() {
+  loginForm.classList.remove("active");
+  registerForm.classList.add("active");
+  indicator.style.transform = "translateX(100%)";
+}
+
+// Initialize with login form visible
+showLogin();
+    </script>
 </html>
