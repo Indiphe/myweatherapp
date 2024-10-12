@@ -59,23 +59,37 @@
     </nav>
     <img src="StockCake-Joyful School Award_1726328338.jpg" alt="Uniform 2" />
   </body>
-   <script>const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
-const indicator = document.getElementById("indicator");
+   <script>document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".nav-button");
+  const infoDisplay = document.getElementById("info-display");
 
-function showLogin() {
-  loginForm.classList.add("active");
-  registerForm.classList.remove("active");
-  indicator.style.transform = "translateX(0)";
+  const infoContent = {
+    menu: "This is the menu section.",
+    home: "Welcome to the home page.",
+    about: "Learn more about us.",
+    services: "Discover our services.",
+    testimonials: "Read what our clients say.",
+    contact: "Get in touch with us.",
+  };
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      const infoKey = event.target.getAttribute("data-info");
+      infoDisplay.textContent =
+        infoContent[infoKey] || "Information not available.";
+    });
+  });
+});
+document.querySelector(".nav-button").addEventListener("click", function () {
+  window.location.href = "info.html";
+});
+function showMessage() {
+  document.getElementById("message").style.display = "block";
 }
-
-function showRegister() {
-  loginForm.classList.remove("active");
-  registerForm.classList.add("active");
-  indicator.style.transform = "translateX(100%)";
+function checkout() {
+  localStorage.removeItem("cart");
+  loadCart();
+  window.location.href = "index.html";
 }
-
-// Initialize with login form visible
-showLogin();
     </script>
 </html>
