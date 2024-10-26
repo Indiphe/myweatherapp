@@ -3,212 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to Khanya Store</title>
-   <style>
-     #menu-button {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: whitesmoke;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  z-index: 1000;
-}
-
-#menu li {
-  margin-right: 20px;
-}
-
-#menu a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  padding: 20px;
-  display: block;
-}
-
-#menu a:hover {
-  color: #ccc;
-  background-color: #0ccddb11;
-}
-body {
-  font-family: Arial, sans-serif;
-}
-
-nav {
-  margin-bottom: 20px;
-}
-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-ul#menu {
-  list-style-type: none;
-  padding: 0;
-}
-
-ul#menu li {
-  margin: 5px 0;
-}
-
-button.nav-button {
-  background-color: blueviolet;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 5px;
-}
-
-button.nav-button:hover {
-  background-color: #0056b3;
-}
-
-#info-display {
-  border: 5px solid #0b31a2;
-  border-radius: 5px;
-  background-color: #423838;
-  padding: 40px;
-}
-#Indepth-detail {
-  background-color: #423838;
-  text-justify: auto;
-  text-align: center;
-  text-decoration: #0056b3;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-.menu {
-  position: relative;
-  display: inline-block;
-}
-.menu2-button {
-  background-color: blueviolet;
-  color: white;
-  border-radius: 4px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 0 5px;
-}
-.menu-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  min-width: 160px;
-}
-.menu-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 14px;
-}
-.menu-content a:hover {
-  background-color: #ddd;
-}
-.menu:hover .menu-content {
-  display: block;
-}
-   </style>
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <title>WeatherCo</title>
   </head>
   <body>
-    <nav>
-      <ul id="menu-button">
-        <li>
-          <button class="menu2-button">Home</button>
-        </li>
-        <li class="menu">
-          <button class="menu2-button">Menu</button>
-          <div class="menu-content">
-            <a href="file:///C://Users//indip//Downloads//cat.html">Uniform</a>
-            <a href="Catalog (1).php">Catalog</a>
-            <a href="return.html">Returns</a>
-            <a href="trackorders.html">Track Order</a>
-            <a href="latest_cart.php">Cart</a>
+    <div class="weather-app">
+      <header>
+        <form class="search-form" id="search-form">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            id="search-form-input"
+            class="search-form-input"
+          />
+          <button type="submit" class="search-form-button">Search</button>
+        </form>
+      </header>
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city" id="city"></h1>
+            <p class="weather-app-details">
+              <span id="time"></span>,
+              <span id="description"></span>
+              <br />
+              Humidity: <strong id="humidity"></strong>, Wind:
+              <strong id="wind-speed"></strong>
+            </p>
           </div>
-        </li>
-        <li>
-          <button
-            class="menu2-button"
-            onclick="window.location.href='about.html'"
-          >
-            About
-          </button>
-        </li>
-        <li>
-          <button
-            class="menu2-button"
-            onclick="window.location.href='Services.html'"
-          >
-            Services
-          </button>
-        </li>
-        <li>
-          <button
-            class="menu2-button"
-            onclick="window.location.href='Reviews.html'"
-          >
-            Reviews
-          </button>
-        </li>
-        <li>
-          <button
-            class="menu2-button"
-            onclick="window.location.href='Contact.html'"
-          >
-            Contact Us
-          </button>
-        </li>
-      </ul>
-    </nav>
-    <img src="StockCake-Joyful School Award_1726328338.jpg" alt="Uniform 2" />
+          <div class="weather-app-temperature-container">
+            <div id="icon"></div>
+            <div class="weather-app-temperature" id="temperature"></div>
+            <div class="weather-app-unit">°C</div>
+          </div>
+        </div>
+        <div class="weather-forecast" id="forecast"></div>
+        <div id="loading" class="hidden">Loading...</div>
+      </main>
+
+      <footer>
+        This project was coded by
+        <a href="https://github.com/matthieua/" target="_blank"
+          >Indiphe Yonwaba Nnondlazi</a
+        >, is
+        <a href="https://github.com/matthieua/meteo" target="_blank"
+          >open-sourced on GitHub</a
+        >
+        and
+        <a href="https://meteo-shecodes-app.netlify.app/" target="_blank"
+          >hosted on Netlify</a
+        >
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
   </body>
-   <script>document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".nav-button");
-  const infoDisplay = document.getElementById("info-display");
-
-  const infoContent = {
-    menu: "This is the menu section.",
-    home: "Welcome to the home page.",
-    about: "Learn more about us.",
-    services: "Discover our services.",
-    testimonials: "Read what our clients say.",
-    contact: "Get in touch with us.",
-  };
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const infoKey = event.target.getAttribute("data-info");
-      infoDisplay.textContent =
-        infoContent[infoKey] || "Information not available.";
-    });
-  });
-});
-document.querySelector(".nav-button").addEventListener("click", function () {
-  window.location.href = "info.html";
-});
-function showMessage() {
-  document.getElementById("message").style.display = "block";
-}
-function checkout() {
-  localStorage.removeItem("cart");
-  loadCart();
-  window.location.href = "index.html";
-}
-    </script>
 </html>
