@@ -11,11 +11,11 @@
     />
 <style>
   body {
-  background-image: url("earth.jpg");
-  background-size: cover; /* Ensures the image covers the entire page */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents tiling */
-  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  background-image: url("https://github.com//Indiphe//myweatherapp//blob//main//clouds.jpg?raw=true");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: "Roboto", sans-serif;
 }
 
@@ -203,24 +203,22 @@ footer {
       </footer>
     </div>
     <script>
-      // Ensure the DOM content is fully loaded before adding event listeners
 document.addEventListener("DOMContentLoaded", () => {
   let searchFormElement = document.querySelector("#search-form");
 
-  // Check if the form element exists to prevent errors
   if (searchFormElement) {
     searchFormElement.addEventListener("submit", handleSearchSubmit);
   }
 });
 
 function handleSearchSubmit(event) {
-  event.preventDefault(); // Prevent page reload
-  console.log("Form submitted"); // Debugging log
+  event.preventDefault();
+  console.log("Form submitted");
 
   let searchInput = document.querySelector("#search-form-input");
 
   if (searchInput && searchInput.value.trim() !== "") {
-    console.log(`Searching for: ${searchInput.value}`); // Log search query
+    console.log(`Searching for: ${searchInput.value}`);
     searchCity(searchInput.value.trim());
   } else {
     alert("Please enter a city name.");
@@ -231,7 +229,6 @@ function searchCity(city) {
   let apiKey = "51t8c7a54baf34490b70f5dc7aco6f3d";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
-  // Show loading message
   document.querySelector("#loading")?.classList.remove("hidden");
 
   axios
@@ -242,7 +239,6 @@ function searchCity(city) {
       alert("City not found. Please try again.");
     })
     .finally(() => {
-      // Hide loading message
       document.querySelector("#loading")?.classList.add("hidden");
     });
 }
@@ -325,7 +321,6 @@ function formatDay(timestamp) {
   return days[date.getDay()];
 }
 
-// Perform an initial search to load weather for Paris
 searchCity("Paris");
 
     </script>
